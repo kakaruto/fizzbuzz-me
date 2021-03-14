@@ -1,0 +1,43 @@
+{
+  "name": "fizzbuzz-me",
+  "version": "0.0.1",
+  "description": "Coding exercice",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "npx eslint src",
+    "start": "npx ts-node src/index.ts",
+    "test": "npx ts-mocha src/**/*.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kakaruto/fizzbuzz-me.git"
+  },
+  "keywords": [
+    "fizzbuzz"
+  ],
+  "author": "Philippe GARRY",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kakaruto/fizzbuzz-me/issues"
+  },
+  "homepage": "https://github.com/kakaruto/fizzbuzz-me#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
+    "@types/chai": "^4.2.15",
+    "@types/mocha": "^8.2.1",
+    "@types/node": "^14.14.34",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "chai": "^4.3.4",
+    "eslint": "^7.22.0",
+    "husky": "^5.1.3",
+    "mocha": "^8.3.2",
+    "prettier": "2.2.1",
+    "ts-mocha": "^8.0.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  }
+}
