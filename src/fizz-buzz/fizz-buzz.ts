@@ -1,21 +1,33 @@
+import {
+  buzzRule,
+  defaultRule,
+  fizzBuzzRule,
+  fizzRule,
+  Rule,
+  zeroRule,
+} from './rules';
+
 export class FizzBuzzTranslator {
+  rules: Rule[] = [];
+
+  constructor(rules?: Rule[]) {
+    if (rules) {
+      this.rules = rules;
+    } else {
+      this.rules.push(zeroRule);
+      this.rules.push(fizzBuzzRule);
+      this.rules.push(fizzRule);
+      this.rules.push(buzzRule);
+      this.rules.push(defaultRule);
+    }
+  }
+
   translate(input: number): string {
-    if (input === 0) {
-      return '0';
-    }
+    let translation = '';
 
-    if (input % 3 === 0 && input % 5 === 0) {
-      return 'Fizzbuzz';
-    }
-    if (input % 3 === 0) {
-      return 'Fizz';
-    }
+    this.rules.forEach((rule) => (translation += rule(translation, input)));
 
-    if (input % 5 === 0) {
-      return 'Buzz';
-    }
-
-    return input.toString();
+    return translation;
   }
 
   findContiguousFizzBuzzInRange(from: number, to: number): [number, number][] {

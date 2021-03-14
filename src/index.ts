@@ -1,4 +1,5 @@
 import { FizzBuzzTranslator } from './fizz-buzz/fizz-buzz';
+import { buzzRule, defaultRule, fizzRule, zeroRule } from './fizz-buzz/rules';
 
 console.log('FizzBuzzTranslator Demo!\n');
 console.log('Samples from 0 to 15:');
@@ -13,3 +14,13 @@ console.log(
 fizzBuzzTranslator
   .findContiguousFizzBuzzInRange(0, 100)
   .forEach((result) => console.log(`${result[0]}/${result[1]}`));
+
+const withoutFuzzTranslator = new FizzBuzzTranslator([
+  zeroRule,
+  buzzRule,
+  defaultRule,
+]);
+console.log('\nSamples from 0 to 15 with custom fuzzBuzzRules:');
+[...Array(16).keys()].map((x) =>
+  console.log(`${x} => ${withoutFuzzTranslator.translate(x)}`),
+);
