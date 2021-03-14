@@ -6,3 +6,10 @@ const fizzBuzzTranslator = new FizzBuzzTranslator();
 [...Array(16).keys()].map((x) =>
   console.log(`${x} => ${fizzBuzzTranslator.translate(x)}`),
 );
+
+console.log(
+  '\nContiguous numbers that leads to the sequence Fizz then Buzz or Buzz then Fizz in an array 0 to 100 :',
+);
+fizzBuzzTranslator
+  .findContiguousFizzBuzzInRange(0, 100)
+  .forEach((result) => console.log(`${result[0]}/${result[1]}`));

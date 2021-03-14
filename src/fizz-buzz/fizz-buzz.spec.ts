@@ -30,4 +30,16 @@ describe('FizzBuzzTranslator', () => {
   it('should translate 15 to "Fizzbuzz"', () => {
     expect(fizzBuzzTranslator.translate(15)).to.equal('Fizzbuzz');
   });
+
+  it('should find contiguous FizzBuzz with numbers 5/6 in range(0..6)', () => {
+    expect(
+      fizzBuzzTranslator.findContiguousFizzBuzzInRange(0, 6),
+    ).to.deep.include([5, 6]);
+  });
+
+  it('should find contiguous FizzBuzz with numbers 5/6 & 9/10 in range(4..10)', () => {
+    const results = fizzBuzzTranslator.findContiguousFizzBuzzInRange(4, 10);
+    expect(results).to.deep.include([5, 6]);
+    expect(results).to.deep.include([9, 10]);
+  });
 });

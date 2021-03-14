@@ -17,4 +17,24 @@ export class FizzBuzzTranslator {
 
     return input.toString();
   }
+
+  findContiguousFizzBuzzInRange(from: number, to: number): [number, number][] {
+    const contiguousFizzBuzz: [number, number][] = [];
+
+    [...Array(to - from).keys()]
+      .map((x) => x + from)
+      .forEach((input) => {
+        const currentTranslation = this.translate(input);
+        const nextTranslation = this.translate(input + 1);
+
+        if (
+          (currentTranslation === 'Fizz' || currentTranslation === 'Buzz') &&
+          (nextTranslation === 'Fizz' || nextTranslation === 'Buzz')
+        ) {
+          contiguousFizzBuzz.push([input, input + 1]);
+        }
+      });
+
+    return contiguousFizzBuzz;
+  }
 }
