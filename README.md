@@ -20,3 +20,13 @@ Even if these are fairly simple requirements, special attention should be given 
 
 Given an array 0 to 100, provide a way to identify contiguous numbers that leads to the sequence Fizz then Buzz or Buzz then Fizz.
 For instance, 5/6 or 9/10.
+
+
+## Development
+
+### Run
+
+```sh
+npm run start # run the application
+npm run test # run the tests
+```
