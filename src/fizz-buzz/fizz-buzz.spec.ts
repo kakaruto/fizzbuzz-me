@@ -23,7 +23,7 @@ describe('FizzBuzzTranslator', () => {
     expect(fizzBuzzTranslator.translate(5)).to.equal('Buzz');
   });
 
-  it('should translate 10 to "10"', () => {
+  it('should translate 10 to "Buzz"', () => {
     expect(fizzBuzzTranslator.translate(10)).to.equal('Buzz');
   });
 
@@ -33,7 +33,7 @@ describe('FizzBuzzTranslator', () => {
 
   it('should find contiguous FizzBuzz with numbers 5/6 in range(0..6)', () => {
     expect(
-      fizzBuzzTranslator.findContiguousFizzBuzzInRange(0, 6),
+      fizzBuzzTranslator.findContiguousFizzBuzzInRange(0, 6)
     ).to.deep.include([5, 6]);
   });
 
@@ -41,5 +41,11 @@ describe('FizzBuzzTranslator', () => {
     const results = fizzBuzzTranslator.findContiguousFizzBuzzInRange(4, 10);
     expect(results).to.deep.include([5, 6]);
     expect(results).to.deep.include([9, 10]);
+  });
+
+  it('should throw exception with wrong range', () => {
+    expect(() =>
+      fizzBuzzTranslator.findContiguousFizzBuzzInRange(10, 1)
+    ).to.throw('IllegalArgument : from > to');
   });
 });

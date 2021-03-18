@@ -1,76 +1,76 @@
 import { expect } from 'chai';
 import {
-  buzzRule,
-  defaultRule,
-  fizzBuzzRule,
-  fizzRule,
-  zeroRule,
+  BuzzRule,
+  DefaultRule,
+  FizzBuzzRule,
+  FizzRule,
+  ZeroRule,
 } from './rules';
 
 describe('FizzBuzz rules', () => {
-  describe('zeroRule', () => {
+  describe('ZeroRule', () => {
     it('should returns "0" if input is 0', () => {
-      expect(zeroRule('', 0)).to.equal('0');
+      expect(new ZeroRule().apply(0)).to.equal('0');
     });
 
-    it('should returns empty string if input is 0 but value is not empty', () => {
-      expect(zeroRule('2', 0)).to.equal('');
+    it('should canApply if input is 0', () => {
+      expect(new ZeroRule().canApply(0)).to.be.true;
     });
 
-    it('should returns empty string if input is not 0', () => {
-      expect(zeroRule('', 42)).to.equal('');
+    it('should throw error if input is not 0', () => {
+      expect(() => new ZeroRule().apply(42)).to.throw('Illegal argument');
     });
   });
 
-  describe('fizzBuzzRule', () => {
+  describe('FizzBuzzRule', () => {
     it('should returns "Fizzbuzz" if input is multiple of 3 and 5', () => {
-      expect(fizzBuzzRule('', 15)).to.equal('Fizzbuzz');
+      expect(new FizzBuzzRule().apply(15)).to.equal('Fizzbuzz');
     });
 
-    it('should returns empty string if input is multiple of 3 and 5 but value is not empty', () => {
-      expect(fizzBuzzRule('2', 15)).to.equal('');
+    it('should canApply if input is is multiple of 3 and 5', () => {
+      expect(new FizzBuzzRule().canApply(15)).to.be.true;
     });
 
-    it('should returns empty string if input is not multiple of 3 and 5', () => {
-      expect(fizzBuzzRule('', 42)).to.equal('');
+    it('should throw error if input is not multiple of 3 and 5', () => {
+      expect(() => new FizzBuzzRule().apply(42)).to.throw('Illegal argument');
     });
   });
 
-  describe('fizzRule', () => {
+  describe('FizzRule', () => {
     it('should returns "Fizz" if input is multiple of 3', () => {
-      expect(fizzRule('', 3)).to.equal('Fizz');
+      expect(new FizzRule().apply(3)).to.equal('Fizz');
     });
 
-    it('should returns empty string if input is multiple of 3 but value is not empty', () => {
-      expect(fizzRule('2', 3)).to.equal('');
+    it('should canApply if input is is multiple of 3', () => {
+      expect(new FizzRule().canApply(3)).to.be.true;
     });
 
-    it('should returns empty string if input is not multiple of 3', () => {
-      expect(fizzRule('', 2)).to.equal('');
-    });
-  });
-
-  describe('buzzRule', () => {
-    it('should returns "Fizzbuzz" if input is multiple of 5', () => {
-      expect(buzzRule('', 5)).to.equal('Buzz');
-    });
-
-    it('should returns empty string if input is multiple of 5 but value is not empty', () => {
-      expect(buzzRule('2', 5)).to.equal('');
-    });
-
-    it('should returns empty string if input is not multiple of  5', () => {
-      expect(buzzRule('', 42)).to.equal('');
+    it('should throw error if input is not multiple of 3', () => {
+      expect(() => new FizzRule().apply(1)).to.throw('Illegal argument');
     });
   });
 
-  describe('defaultRule', () => {
-    it('should returns the input in string if the value is empty', () => {
-      expect(defaultRule('', 15)).to.equal('15');
+  describe('BuzzRule', () => {
+    it('should returns "Buzz" if input is multiple of 5', () => {
+      expect(new BuzzRule().apply(5)).to.equal('Buzz');
     });
 
-    it('should returns empty string if value is not empty', () => {
-      expect(defaultRule('42', 42)).to.equal('');
+    it('should canApply if input is is multiple of 5', () => {
+      expect(new BuzzRule().canApply(5)).to.be.true;
+    });
+
+    it('should throw error if input is not multiple of 5', () => {
+      expect(() => new BuzzRule().apply(1)).to.throw('Illegal argument');
+    });
+  });
+
+  describe('DefaultRule', () => {
+    it('should returns the input in string', () => {
+      expect(new DefaultRule().apply(15)).to.equal('15');
+    });
+
+    it('should always canApply', () => {
+      expect(new DefaultRule().canApply(12)).to.be.true;
     });
   });
 });

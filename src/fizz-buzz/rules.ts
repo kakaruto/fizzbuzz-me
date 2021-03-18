@@ -1,18 +1,67 @@
-type Rule = (value: string, n: number) => string;
+interface Rule {
+  canApply(n: number): boolean;
+  apply(n: number): string;
+}
 
-const zeroRule: Rule = (value: string, input: number): string =>
-  value.length === 0 && input === 0 ? '0' : '';
+class ZeroRule implements Rule {
+  canApply(n: number): boolean {
+    return n === 0;
+  }
+  apply(n: number): string {
+    if (!this.canApply(n)) {
+      throw new Error('Illegal argument');
+    }
+    return '0';
+  }
+}
 
-const fizzBuzzRule: Rule = (value: string, input: number): string =>
-  value.length === 0 && input % 3 === 0 && input % 5 === 0 ? 'Fizzbuzz' : '';
+class FizzBuzzRule implements Rule {
+  canApply(n: number): boolean {
+    return n % 3 === 0 && n % 5 === 0;
+  }
 
-const fizzRule: Rule = (value: string, input: number): string =>
-  value.length === 0 && input % 3 === 0 ? 'Fizz' : '';
+  apply(n: number): string {
+    if (!this.canApply(n)) {
+      throw new Error('Illegal argument');
+    }
+    return 'Fizzbuzz';
+  }
+}
 
-const buzzRule: Rule = (value: string, input: number): string =>
-  value.length === 0 && input % 5 === 0 ? 'Buzz' : '';
+class FizzRule implements Rule {
+  canApply(n: number): boolean {
+    return n % 3 === 0;
+  }
 
-const defaultRule: Rule = (value: string, input: number): string =>
-  value.length === 0 ? input.toString() : '';
+  apply(n: number): string {
+    if (!this.canApply(n)) {
+      throw new Error('Illegal argument');
+    }
+    return 'Fizz';
+  }
+}
+class BuzzRule implements Rule {
+  canApply(n: number): boolean {
+    return n % 5 === 0;
+  }
 
-export { Rule, zeroRule, fizzBuzzRule, fizzRule, buzzRule, defaultRule };
+  apply(n: number): string {
+    if (!this.canApply(n)) {
+      throw new Error('Illegal argument');
+    }
+    return 'Buzz';
+  }
+}
+
+class DefaultRule implements Rule {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  canApply(n: number): boolean {
+    return true;
+  }
+
+  apply(n: number): string {
+    return n.toString();
+  }
+}
+
+export { Rule, ZeroRule, FizzBuzzRule, FizzRule, BuzzRule, DefaultRule };

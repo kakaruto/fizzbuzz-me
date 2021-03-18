@@ -1,36 +1,33 @@
 import {
-  buzzRule,
-  defaultRule,
-  fizzBuzzRule,
-  fizzRule,
+  BuzzRule,
+  DefaultRule,
+  FizzBuzzRule,
+  FizzRule,
   Rule,
-  zeroRule,
+  ZeroRule,
 } from './rules';
 
 export class FizzBuzzTranslator {
-  rules: Rule[] = [];
+  private rules: Rule[] = [];
 
   constructor(rules?: Rule[]) {
     if (rules) {
       this.rules = rules;
     } else {
-      this.rules.push(zeroRule);
-      this.rules.push(fizzBuzzRule);
-      this.rules.push(fizzRule);
-      this.rules.push(buzzRule);
-      this.rules.push(defaultRule);
+      this.rules.push(new ZeroRule());
+      this.rules.push(new FizzBuzzRule());
+      this.rules.push(new FizzRule());
+      this.rules.push(new BuzzRule());
+      this.rules.push(new DefaultRule());
     }
   }
 
   translate(input: number): string {
-    let translation = '';
-
-    this.rules.forEach((rule) => (translation += rule(translation, input)));
-
-    return translation;
+    return this.rules.find((x) => x.canApply(input))?.apply(input) || '';
   }
 
   findContiguousFizzBuzzInRange(from: number, to: number): [number, number][] {
+    if (from > to) throw new Error('IllegalArgument : from > to');
     const contiguousFizzBuzz: [number, number][] = [];
 
     [...Array(to - from).keys()]
